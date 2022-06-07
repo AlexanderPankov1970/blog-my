@@ -39,3 +39,8 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
   fetchPostsAndUsers: fetchPostsAndUsers,
 })(PostList);
+//Пока устанавливаем null вместо mapStateToProps
+//export default connect(null, {
+//   //fetchPosts:FetchPosts
+//     fetchPostsAndUsers: fetchPostsAndUsers,
+//   })(PostList);

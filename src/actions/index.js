@@ -21,10 +21,9 @@ export const fetchPosts = () => async (dispatch) => {
 //   dispatch({ type: "FETCH_USER", payload: response.data });
 // };
 
-//VAR 2 Позволяет через кэш делать запрос только один раз!
-// export const fetchUser = (id) => (dispatch) => {
-//   _fetchUser(id, dispatch);
-// };
+//VAR 2 Позволяет через кэш делать запрос только один раз! gg281
+// export const fetchUser = id => dispatch =>
+// _fetchUser(id, dispatch);
 // const _fetchUser = _.memoize(async (id, dispatch) => {
 //   const response = await jsonPlaceholder.get(`/users/${id}`);
 
@@ -40,14 +39,25 @@ export const fetchUser = (id) => async (dispatch) => {
 export const fetchPostsAndUsers = () => async (dispatch, getState) => {
   await dispatch(fetchPosts());
 
-  //console.log(getState().posts);
+  //   console.log(getState());
+  //   console.log(getState().posts);
   //const userAllId = _.map(getState().posts, "userId");
-  const userIds = _.uniq(_.map(getState().posts, "userId"));
+  //VAR 1*
+  //const userIds = _.uniq(_.map(getState().posts, "userId"));
   //console.log(userAllId, userIds);
-  userIds.forEach((id) => dispatch(fetchUser(id)));
-  console.log(getState());
+  //console.log(userIds);
+
+  //userIds.forEach((id) => dispatch(fetchUser(id)));
+  //console.log(getState());
   //   await Promise.all(userIds.map((id) => dispatch(fetchUser(id)))).then(
   //     console.log(getState())
   //   );
   //console.log(getState().users);
+  //VAR 2*
+  _.chain(getState().posts)
+    .map("userId")
+    .uniq()
+    .forEach((id) => dispatch(fetchUser(id)))
+    .value();
 };
+//Redux Thunk

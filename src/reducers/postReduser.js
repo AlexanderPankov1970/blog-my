@@ -1,3 +1,5 @@
+//Редюсер ДОЛЖЕН возвращать ЛЮБОЕ значение кроме indefined!!
+
 //VAR 1
 // export default (state = [], action) => {
 //   if (action.type === "FETCH_POST") {
