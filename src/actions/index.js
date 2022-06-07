@@ -43,21 +43,21 @@ export const fetchPostsAndUsers = () => async (dispatch, getState) => {
   //   console.log(getState().posts);
   //const userAllId = _.map(getState().posts, "userId");
   //VAR 1*
-  //const userIds = _.uniq(_.map(getState().posts, "userId"));
+  const userIds = _.uniq(_.map(getState().posts, "userId"));
   //console.log(userAllId, userIds);
   //console.log(userIds);
 
-  //userIds.forEach((id) => dispatch(fetchUser(id)));
+  userIds.forEach((id) => dispatch(fetchUser(id)));
   //console.log(getState());
   //   await Promise.all(userIds.map((id) => dispatch(fetchUser(id)))).then(
   //     console.log(getState())
   //   );
   //console.log(getState().users);
   //VAR 2*
-  _.chain(getState().posts)
-    .map("userId")
-    .uniq()
-    .forEach((id) => dispatch(fetchUser(id)))
-    .value();
+  // _.chain(getState().posts)
+  //   .map("userId")
+  //   .uniq()
+  //   .forEach((id) => dispatch(fetchUser(id)))
+  //   .value();
 };
 //Redux Thunk
